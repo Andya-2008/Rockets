@@ -11,19 +11,47 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem crashParticles;
 
-
     AudioSource audioSource;
 
     bool isTransitioning = false;
+    bool collisionDisabled = false;
+    [SerializeField] bool rocket1;
+    [SerializeField] bool rocket2;
+    [SerializeField] bool rocket3;
+    [SerializeField] bool rocket4;
+    [SerializeField] Transform respawn1;
+    [SerializeField] Transform respawn2;
+    [SerializeField] Transform respawn3;
+    [SerializeField] Transform respawn4;
+
+    [SerializeField] bool sandBox;
+    public GameObject myController;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
+    void Update()
+    {
+        //RespondToDebugKeys();
+    }
+
+    void RespondToDebugKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionDisabled = !collisionDisabled;  // toggle collision
+        }
+    }
+
     void OnCollisionEnter(Collision other)
     {
-        if (isTransitioning) { return; }
+        if (isTransitioning || collisionDisabled) { return; }
 
         switch (other.gameObject.tag)
         {
@@ -32,6 +60,8 @@ public class CollisionHandler : MonoBehaviour
                 break;
             case "Finish":
                 StartSuccessSequence();
+                break;
+            case "Player":
                 break;
             default:
                 StartCrashSequence();
@@ -55,8 +85,8 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(crash);
         crashParticles.Play();
-        GetComponent<Movement>().enabled = false;
-        Invoke("ReloadLevel", levelLoadDelay);
+        myController.GetComponent<PlayerController>().enabled = false;
+        Invoke("Respawn", levelLoadDelay);
     }
 
     void LoadNextLevel()
@@ -70,10 +100,38 @@ public class CollisionHandler : MonoBehaviour
         SceneManager.LoadScene(nextSceneIndex);
     }
 
-    void ReloadLevel()
+    void Respawn()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
+        //int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        //SceneManager.LoadScene(currentSceneIndex);
+        if (sandBox)
+        {
+            if (rocket1)
+            {
+                this.transform.position = respawn1.transform.position;
+            }
+            if (rocket2)
+            {
+                this.transform.position = respawn2.transform.position;
+            }
+            if (rocket3)
+            {
+                this.transform.position = respawn3.transform.position;
+            }
+            if (rocket4)
+            {
+                this.transform.position = respawn4.transform.position;
+            }
+            this.transform.rotation = Quaternion.identity;
+            this.GetComponent<Rigidbody>().freezeRotation = true;
+            this.GetComponent<Rigidbody>().freezeRotation = false;
+            myController.GetComponent<PlayerController>().enabled = true;
+            isTransitioning = false;
+        }
+        else
+        {
+            //Do stuff when die in game
+        }
     }
 
 }

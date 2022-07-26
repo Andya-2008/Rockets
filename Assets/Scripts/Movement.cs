@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
 
     Rigidbody rb;
     AudioSource audioSource;
+    float offset = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -30,56 +31,53 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessThrust();
-        ProcessRotation();
     }
 
-    void ProcessThrust()
+    public void ProcessThrust()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
-            if (!audioSource.isPlaying)
-                if (!audioSource.isPlaying)
-                {
-                    audioSource.PlayOneShot(mainEngine);
-                }
-            if (!mainEngineParticles.isPlaying)
-            {
-                mainEngineParticles.Play();
-            }
+            StartThrusting();
         }
         else
         {
-            audioSource.Stop();
-            mainEngineParticles.Stop();
+            StopThrusting();
         }
     }
 
-    void ProcessRotation()
+    public void ProcessRotation()
     {
-        if (Input.GetKey(KeyCode.A))
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 5.23f;
+
+        Vector3 objectPos = UnityEngine.Camera.main.WorldToScreenPoint(transform.position);
+
+        mousePos.x = mousePos.x - objectPos.x;
+        mousePos.y = mousePos.y - objectPos.y;
+
+        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+    }
+
+    void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+        if (!audioSource.isPlaying)
         {
-            ApplyRotation(rotationThrust);
-            if (!rightThrusterParticles.isPlaying)
-            {
-                rightThrusterParticles.Play();
-            }
+            audioSource.PlayOneShot(mainEngine);
         }
-        else if (Input.GetKey(KeyCode.D))
+        if (!mainEngineParticles.isPlaying)
         {
-            ApplyRotation(-rotationThrust);
-            if (!leftThrusterParticles.isPlaying)
-            {
-                leftThrusterParticles.Play();
-            }
-        }
-        else
-        {
-            rightThrusterParticles.Stop();
-            leftThrusterParticles.Stop();
+            mainEngineParticles.Play();
         }
     }
+
+    private void StopThrusting()
+    {
+        audioSource.Stop();
+        mainEngineParticles.Stop();
+    }
+
 
     void ApplyRotation(float rotationThisFrame)
     {

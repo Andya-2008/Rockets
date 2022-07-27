@@ -59,7 +59,7 @@ namespace Photon.Pun.Demo.Asteroids
 
         public override void OnConnectedToMaster()
         {
-            this.SetActivePanel(SelectionPanel.name);
+            PhotonNetwork.JoinRandomRoom();
         }
 
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -105,6 +105,7 @@ namespace Photon.Pun.Demo.Asteroids
 
         public override void OnJoinedRoom()
         {
+            /*
             // joining (or entering) a room invalidates any cached lobby room list (even if LeaveLobby was not called due to just joining a room)
             cachedRoomList.Clear();
 
@@ -139,6 +140,8 @@ namespace Photon.Pun.Demo.Asteroids
                 {AsteroidsGame.PLAYER_LOADED_LEVEL, false}
             };
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+        */
+            PhotonNetwork.LoadLevel("SandBox");
         }
 
         public override void OnLeftRoom()
@@ -234,7 +237,7 @@ namespace Photon.Pun.Demo.Asteroids
         {
             SetActivePanel(JoinRandomRoomPanel.name);
 
-            PhotonNetwork.JoinRandomRoom();
+            
         }
 
         public void OnLeaveGameButtonClicked()

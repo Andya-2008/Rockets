@@ -25,7 +25,10 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] Transform respawn4;
 
     [SerializeField] bool sandBox;
-    public GameObject myController;
+    public GameObject Controller1;
+    public GameObject Controller2;
+    public GameObject Controller3;
+    public GameObject Controller4;
 
     void Start()
     {
@@ -85,7 +88,22 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(crash);
         crashParticles.Play();
-        myController.GetComponent<PlayerController>().enabled = false;
+        if (rocket1)
+        {
+            Controller1.GetComponent<PlayerController>().enabled = false;
+        }
+        if (rocket2)
+        {
+            Controller2.GetComponent<PlayerController>().enabled = false;
+        }
+        if (rocket3)
+        {
+            Controller3.GetComponent<PlayerController>().enabled = false;
+        }
+        if (rocket4)
+        {
+            Controller4.GetComponent<PlayerController>().enabled = false;
+        }
         Invoke("Respawn", levelLoadDelay);
     }
 
@@ -108,24 +126,28 @@ public class CollisionHandler : MonoBehaviour
         {
             if (rocket1)
             {
+                Controller1.GetComponent<PlayerController>().enabled = true;
                 this.transform.position = respawn1.transform.position;
             }
             if (rocket2)
             {
+                Controller2.GetComponent<PlayerController>().enabled = true;
                 this.transform.position = respawn2.transform.position;
             }
             if (rocket3)
             {
+                Controller3.GetComponent<PlayerController>().enabled = true;
                 this.transform.position = respawn3.transform.position;
             }
             if (rocket4)
             {
+                Controller4.GetComponent<PlayerController>().enabled = true;
                 this.transform.position = respawn4.transform.position;
             }
             this.transform.rotation = Quaternion.identity;
             this.GetComponent<Rigidbody>().freezeRotation = true;
             this.GetComponent<Rigidbody>().freezeRotation = false;
-            myController.GetComponent<PlayerController>().enabled = true;
+            
             isTransitioning = false;
         }
         else

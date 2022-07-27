@@ -17,42 +17,42 @@ public class PlayerRoleRandomizer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        if (PhotonNetwork.LocalPlayer.NickName == PhotonNetwork.PlayerList[1].NickName)
+        
+        if (PhotonNetwork.LocalPlayer.NickName == PhotonNetwork.PlayerList[0].NickName)
         {
             Controller1.SetActive(true);
             Controller2.SetActive(false);
             Controller3.SetActive(false);
             Controller4.SetActive(false);
             RocketName1.text = PhotonNetwork.LocalPlayer.NickName;
-            GameObject.Find("Rocket1").GetComponent<CollisionHandler>().myController=Controller1;
+            //GameObject.Find("Rocket1").GetComponent<CollisionHandler>().myController=Controller1;
         }
-        if (PhotonNetwork.LocalPlayer.NickName == PhotonNetwork.PlayerList[2].NickName)
+        if (PhotonNetwork.LocalPlayer.NickName == PhotonNetwork.PlayerList[1].NickName)
         {
             Controller1.SetActive(false);
             Controller2.SetActive(true);
             Controller3.SetActive(false);
             Controller4.SetActive(false);
             RocketName2.text = PhotonNetwork.LocalPlayer.NickName;
-            GameObject.Find("Rocket2").GetComponent<CollisionHandler>().myController = Controller2;
+            //GameObject.Find("Rocket2").GetComponent<CollisionHandler>().myController = Controller2;
         }
-        if (PhotonNetwork.LocalPlayer.NickName == PhotonNetwork.PlayerList[3].NickName)
+        if (PhotonNetwork.LocalPlayer.NickName == PhotonNetwork.PlayerList[2].NickName)
         {
             Controller1.SetActive(false);
             Controller2.SetActive(false);
             Controller3.SetActive(true);
             Controller4.SetActive(false);
             RocketName3.text = PhotonNetwork.LocalPlayer.NickName;
-            GameObject.Find("Rocket3").GetComponent<CollisionHandler>().myController = Controller3;
+            //GameObject.Find("Rocket3").GetComponent<CollisionHandler>().myController = Controller3;
         }
-        if (PhotonNetwork.LocalPlayer.NickName == PhotonNetwork.PlayerList[4].NickName)
+        if (PhotonNetwork.LocalPlayer.NickName == PhotonNetwork.PlayerList[3].NickName)
         {
             Controller1.SetActive(false);
             Controller2.SetActive(false);
             Controller3.SetActive(false);
             Controller4.SetActive(true);
             RocketName4.text = PhotonNetwork.LocalPlayer.NickName;
-            GameObject.Find("Rocket4").GetComponent<CollisionHandler>().myController = Controller4;
+            //GameObject.Find("Rocket4").GetComponent<CollisionHandler>().myController = Controller4;
         }
         
     }

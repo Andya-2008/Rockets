@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] bool Player1Bool;
@@ -42,5 +43,6 @@ public class PlayerController : MonoBehaviour
             Player4.GetComponent<Movement>().ProcessRotation();
             Player4.GetComponent<Movement>().ProcessThrust();
         }
+        
     }
 }

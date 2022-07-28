@@ -36,19 +36,31 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            photonView.RPC("StartThrusting", RpcTarget.All);
+            //photonView.RPC("StartThrusting", RpcTarget.All);
+            StartThrusting();
         }
         else
         {
-            photonView.RPC("StopThrusting", RpcTarget.All);
+            //photonView.RPC("StopThrusting", RpcTarget.All);
+            StopThrusting();
         }
     }
 
     public void ProcessRotation()
     {
-        photonView.RPC("RPCRotate", RpcTarget.All);
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 5.23f;
+
+        Vector3 objectPos = UnityEngine.Camera.main.WorldToScreenPoint(transform.position);
+
+        mousePos.x = mousePos.x - objectPos.x;
+        mousePos.y = mousePos.y - objectPos.y;
+
+        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        //photonView.RPC("RPCRotate", RpcTarget.All, angle);
     }
-    [PunRPC]
+    //[PunRPC]
     public void StartThrusting()
     {
         rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
@@ -61,7 +73,7 @@ public class Movement : MonoBehaviour
             mainEngineParticles.Play();
         }
     }
-    [PunRPC]
+    //[PunRPC]
     public void StopThrusting()
     {
         audioSource.Stop();
@@ -75,18 +87,9 @@ public class Movement : MonoBehaviour
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
         rb.freezeRotation = false;  // unfreezing rotation so the physics system can take over
     }
-    [PunRPC]
-    public void RPCRotate()
+    /*[PunRPC]
+    public void RPCRotate(float angle)
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 5.23f;
-
-        Vector3 objectPos = UnityEngine.Camera.main.WorldToScreenPoint(transform.position);
-
-        mousePos.x = mousePos.x - objectPos.x;
-        mousePos.y = mousePos.y - objectPos.y;
-
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
-    }
+    }*/
 }

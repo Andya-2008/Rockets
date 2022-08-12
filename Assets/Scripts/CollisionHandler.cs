@@ -12,6 +12,7 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] ParticleSystem crashParticles;
 
     AudioSource audioSource;
+    public bool gameOver;
 
     bool isTransitioning = false;
     bool collisionDisabled = false;
@@ -19,17 +20,17 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] bool rocket2;
     [SerializeField] bool rocket3;
     [SerializeField] bool rocket4;
+    [SerializeField] bool bullet;
     [SerializeField] Transform respawn1;
     [SerializeField] Transform respawn2;
     [SerializeField] Transform respawn3;
     [SerializeField] Transform respawn4;
-
+    [SerializeField] GameObject bulletBody;
     [SerializeField] bool sandBox;
     public GameObject Controller1;
     public GameObject Controller2;
     public GameObject Controller3;
     public GameObject Controller4;
-
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -37,7 +38,7 @@ public class CollisionHandler : MonoBehaviour
 
     void Update()
     {
-        //RespondToDebugKeys();
+        RespondToDebugKeys();
     }
 
     void RespondToDebugKeys()
@@ -85,26 +86,36 @@ public class CollisionHandler : MonoBehaviour
     void StartCrashSequence()
     {
         isTransitioning = true;
-        audioSource.Stop();
-        audioSource.PlayOneShot(crash);
+        
+        
         crashParticles.Play();
         if (rocket1)
         {
-            Controller1.GetComponent<PlayerController>().enabled = false;
+            Controller1.GetComponent<Movement>().enabled = false;
         }
         if (rocket2)
         {
-            Controller2.GetComponent<PlayerController>().enabled = false;
+            Controller2.GetComponent<Movement>().enabled = false;
         }
         if (rocket3)
         {
-            Controller3.GetComponent<PlayerController>().enabled = false;
+            Controller3.GetComponent<Movement>().enabled = false;
         }
         if (rocket4)
         {
-            Controller4.GetComponent<PlayerController>().enabled = false;
+            Controller4.GetComponent<Movement>().enabled = false;
+        }
+        if(bullet)
+        {
+            bulletBody.SetActive(false);
+        }
+        if(!bullet)
+        {
+            audioSource.Stop();
+            audioSource.PlayOneShot(crash);
         }
         Invoke("Respawn", levelLoadDelay);
+    
     }
 
     void LoadNextLevel()
@@ -126,32 +137,49 @@ public class CollisionHandler : MonoBehaviour
         {
             if (rocket1)
             {
-                Controller1.GetComponent<PlayerController>().enabled = true;
+                Controller1.GetComponent<Movement>().enabled = true;
                 this.transform.position = respawn1.transform.position;
             }
             if (rocket2)
             {
-                Controller2.GetComponent<PlayerController>().enabled = true;
+                Controller2.GetComponent<Movement>().enabled = true;
                 this.transform.position = respawn2.transform.position;
             }
             if (rocket3)
             {
-                Controller3.GetComponent<PlayerController>().enabled = true;
+                Controller3.GetComponent<Movement>().enabled = true;
                 this.transform.position = respawn3.transform.position;
             }
             if (rocket4)
             {
-                Controller4.GetComponent<PlayerController>().enabled = true;
+                Controller4.GetComponent<Movement>().enabled = true;
                 this.transform.position = respawn4.transform.position;
             }
+            if(bullet)
+            {
+                Destroy(this.gameObject);
+            }
             this.transform.rotation = Quaternion.identity;
-            this.GetComponent<Rigidbody>().freezeRotation = true;
-            this.GetComponent<Rigidbody>().freezeRotation = false;
             
             isTransitioning = false;
         }
         else
         {
+            if(!gameOver)
+            {
+                if(rocket1)
+                {
+                    GameObject.Find("GameOverManager").GetComponent<GameOverManager>().GameOverStart(2);
+                    GameObject.Find("Rocket2").GetComponent<CollisionHandler>().gameOver=true;
+                    PlayerPrefs.SetInt("Rocket2Score", PlayerPrefs.GetInt("Rocket2Score")+1);
+                }
+                if(rocket2)
+                {
+                    GameObject.Find("GameOverManager").GetComponent<GameOverManager>().GameOverStart(1);
+                    GameObject.Find("Rocket1").GetComponent<CollisionHandler>().gameOver=true;
+                    PlayerPrefs.SetInt("Rocket1Score", PlayerPrefs.GetInt("Rocket1Score")+1);
+                }
+            }
             //Do stuff when die in game
         }
     }

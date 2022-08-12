@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: befd6bc0d20417e46b5b39628b3d87f9
   - enabled: 1
-    path: Assets/Scenes/Sandbox 1.unity
+    path: Assets/Scenes/Sandbox-Phone.unity
+    guid: e2e9b19fa86fe664a98e0230cc427ee2
+  - enabled: 1
+    path: Assets/Scenes/Sandbox-Com.unity
     guid: d734e4bbeb7593f4cbb381f42f7040de
   - enabled: 1
     path: Assets/Scenes/Under.unity

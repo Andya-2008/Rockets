@@ -59,8 +59,19 @@ public class CollisionHandler : MonoBehaviour
 
         switch (other.gameObject.tag)
         {
+            case "Powerup":
+                switch(other.gameObject.name)
+                {
+                    case "P_BulletSpeed(Clone)":
+                        Debug.Log("`");
+                        this.gameObject.GetComponent<GrabPowerup>().GrabbedPowerup(1);
+                        break;
+                    default:
+                        break;
+                }
+                Destroy(other.gameObject);
+                break;
             case "Friendly":
-                Debug.Log("This thing is friendly");
                 break;
             case "Finish":
                 StartSuccessSequence();

@@ -26,7 +26,6 @@ public class Movement : MonoBehaviour
     public bool rocket2;
     [SerializeField] bool Com;
     [SerializeField] bool Phone;
-    bool resetRot;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +43,7 @@ public class Movement : MonoBehaviour
         joystickY2 = GameObject.Find("Fixed Joystick (1)").GetComponent<Joystick>().Direction.y;
         ProcessThrust();
         ProcessRotation();
+        
         //Debug.Log(Mathf.Asin(joystickY/(Mathf.Sqrt(joystickX*joystickX+joystickY*joystickY))) * 180/Mathf.PI + "; " + Mathf.Acos(joystickX/(Mathf.Sqrt(joystickX*joystickX+joystickY*joystickY))) * 180/Mathf.PI);
     }
 
@@ -196,38 +196,30 @@ public class Movement : MonoBehaviour
         }
         if(Phone)
         {
+            rb.freezeRotation = true;
             if(rocket1)
             {
                 if(Mathf.Asin(joystickY/(Mathf.Sqrt(joystickX*joystickX+joystickY*joystickY))) * 180/Mathf.PI>0)
                 {
-                    if(resetRot)
-                    {
-                        resetRot=false;
-                        this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-                        this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-                    }
-                    transform.rotation=Quaternion.Euler(new Vector3(this.transform.rotation.x,this.transform.rotation.y,Mathf.Acos(joystickX/(Mathf.Sqrt(joystickX*joystickX+joystickY*joystickY))) * 180/Mathf.PI-90));
+                    transform.rotation=Quaternion.Euler(new Vector3(0,0,Mathf.Acos(joystickX/(Mathf.Sqrt(joystickX*joystickX+joystickY*joystickY))) * 180/Mathf.PI-90));
                 }
                 else if(Mathf.Asin(joystickY/(Mathf.Sqrt(joystickX*joystickX+joystickY*joystickY))) * 180/Mathf.PI<0)
                 {
-                    transform.rotation=Quaternion.Euler(new Vector3(this.transform.rotation.x,this.transform.rotation.y,Mathf.Acos(joystickX/(Mathf.Sqrt(joystickX*joystickX+joystickY*joystickY))) * -180/Mathf.PI-90));
-                }
-                else
-                {
-                    resetRot=true;
+                    transform.rotation=Quaternion.Euler(new Vector3(0,0,Mathf.Acos(joystickX/(Mathf.Sqrt(joystickX*joystickX+joystickY*joystickY))) * -180/Mathf.PI-90));
                 }
             }
             if(rocket2)
             {
                 if(Mathf.Asin(joystickY2/(Mathf.Sqrt(joystickX2*joystickX2+joystickY2*joystickY2))) * 180/Mathf.PI>0)
                 {
-                    transform.rotation=Quaternion.Euler(new Vector3(this.transform.rotation.x,this.transform.rotation.y,Mathf.Acos(joystickX2/(Mathf.Sqrt(joystickX2*joystickX2+joystickY2*joystickY2))) * 180/Mathf.PI-90));
+                    transform.rotation=Quaternion.Euler(new Vector3(0,0,Mathf.Acos(joystickX2/(Mathf.Sqrt(joystickX2*joystickX2+joystickY2*joystickY2))) * 180/Mathf.PI-90));
                 }
                 else if(Mathf.Asin(joystickY2/(Mathf.Sqrt(joystickX2*joystickX2+joystickY2*joystickY2))) * 180/Mathf.PI<0)
                 {
-                    transform.rotation=Quaternion.Euler(new Vector3(this.transform.rotation.x,this.transform.rotation.y,Mathf.Acos(joystickX2/(Mathf.Sqrt(joystickX2*joystickX2+joystickY2*joystickY2))) * -180/Mathf.PI-90));
+                    transform.rotation=Quaternion.Euler(new Vector3(0,0,Mathf.Acos(joystickX2/(Mathf.Sqrt(joystickX2*joystickX2+joystickY2*joystickY2))) * -180/Mathf.PI-90));
                 }
             }
+            rb.freezeRotation = false;
         }
     }
 
@@ -236,5 +228,6 @@ public class Movement : MonoBehaviour
         rb.freezeRotation = true;  // freezing rotation so we can manually rotate
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
         rb.freezeRotation = false;  // unfreezing rotation so the physics system can take over
+        
     }
 }

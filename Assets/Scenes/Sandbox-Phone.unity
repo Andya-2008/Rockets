@@ -305,6 +305,20 @@ MonoBehaviour:
   bulletSpeed: 700
   Com: 0
   Phone: 1
+  powerup: 0
+  Nerf: 0
+--- !u!114 &144851729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144851717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d23b9118cb7c0e4b9c92f51e1d39225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &199032884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -438,6 +452,20 @@ MonoBehaviour:
   bulletSpeed: 700
   Com: 0
   Phone: 1
+  powerup: 0
+  Nerf: 0
+--- !u!114 &356463797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356463785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d23b9118cb7c0e4b9c92f51e1d39225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &357643360
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +621,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1223316985}
     m_Modifications:
+    - target: {fileID: 1219459267, guid: 50fa30d7090585344a174a9e3a44fb6c, type: 3}
+      propertyPath: Com
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1219459267, guid: 50fa30d7090585344a174a9e3a44fb6c, type: 3}
       propertyPath: Phone
       value: 1
@@ -1924,6 +1956,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1458238949}
+  - component: {fileID: 1458238950}
   m_Layer: 0
   m_Name: PowerupManager
   m_TagString: Untagged
@@ -1939,13 +1972,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458238948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.06, y: 10.639999, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1458238950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458238948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b637dd15e93f3954fa06fb72acc6dced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupList:
+  - {fileID: 4321295812289002255, guid: 35e547ac18b77f24190e1a8ea91cfc53, type: 3}
+  startTime: 0
+  spawnPos: {fileID: 1458238949}
 --- !u!1 &1489030317
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,6 +3150,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1223316985}
     m_Modifications:
+    - target: {fileID: 1219459267, guid: 50fa30d7090585344a174a9e3a44fb6c, type: 3}
+      propertyPath: Com
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1219459267, guid: 50fa30d7090585344a174a9e3a44fb6c, type: 3}
       propertyPath: Phone
       value: 1

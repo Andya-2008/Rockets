@@ -7,7 +7,7 @@ public class BulletAddForce : MonoBehaviour
     [SerializeField] float bulletSpeed;
     GameObject balls;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         balls = GameObject.Find("Balls");
         this.GetComponent<Rigidbody>().AddRelativeForce(transform.right*bulletSpeed);

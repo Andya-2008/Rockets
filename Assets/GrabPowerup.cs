@@ -5,7 +5,7 @@ using UnityEngine;
 public class GrabPowerup : MonoBehaviour
 {
     bool stillActive;
-    float startTime;
+    public float startTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +26,7 @@ public class GrabPowerup : MonoBehaviour
         GameObject.Find("PowerupManager").GetComponent<PowerupManager>().startTime=Time.time;
         GameObject.Find("PowerupManager").GetComponent<PowerupManager>().active=false;
         stillActive=true;
-        startTime=Time.time;
+        
         //Bulletspeed=1
         this.GetComponent<Shooter>().powerup = powerUpType;
     }

@@ -6,11 +6,13 @@ public class PowerupManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> powerupList = new List<GameObject>();
     public float startTime;
-    bool initialTimeCheck;
+    [SerializeField]bool initialTimeCheck;
     [SerializeField] Transform spawnPos;
     int powerUpNum;
     GameObject nextPowerup;
     public bool active;
+    [SerializeField] GameObject OrigUnInteract;
+    [SerializeField] GameObject BulletSpeedUnInteract;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,19 +33,34 @@ public class PowerupManager : MonoBehaviour
             
             if(initialTimeCheck)
             {
-                active=true;
-                spawnPos.position = new Vector3(Random.Range(-21,9), Random.Range(2, 14), 0);
+                spawnPos.position = new Vector3(Random.Range(-21,9), Random.Range(2, 12), 0);
                 Instantiate(nextPowerup, spawnPos.position, Quaternion.identity);
                 
             }
-            else
-            {
-                initialTimeCheck=true;
-            }
+            
             powerUpNum=Random.Range(0,powerupList.Count);
-            nextPowerup = powerupList[powerUpNum]; 
-            //Put startTime=Time.time later when player touches
+            nextPowerup = powerupList[powerUpNum];
+            active=true;
+            SetPowerUpUIActive(powerUpNum+1);
         }
         
+    }
+    void SetPowerUpUIActive(int Powerup)
+    {
+        if(!initialTimeCheck)
+        {
+            active=false;
+            initialTimeCheck=true;
+        }
+        if(Powerup==1)
+        {
+            BulletSpeedUnInteract.SetActive(true);
+            OrigUnInteract.SetActive(false);
+        }
+        if(Powerup==2)
+        {
+            BulletSpeedUnInteract.SetActive(false);
+            OrigUnInteract.SetActive(true);
+        }
     }
 }

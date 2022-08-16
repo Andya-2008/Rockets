@@ -5,8 +5,9 @@ using TMPro;
 
 public class ScoreText : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI rocket1;
-    [SerializeField] TextMeshProUGUI rocket2;
+    public TextMeshProUGUI rocket1;
+    public TextMeshProUGUI rocket2;
+    public bool Lock;
     // Start is called before the first frame update
     void Start()
     {

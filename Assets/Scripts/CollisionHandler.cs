@@ -31,14 +31,20 @@ public class CollisionHandler : MonoBehaviour
     public GameObject Controller2;
     public GameObject Controller3;
     public GameObject Controller4;
+    float bulletStartTime;
     void Start()
     {
+        bulletStartTime=Time.time;
         audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        RespondToDebugKeys();
+        if(Time.time-bulletStartTime>=5 && bullet)
+        {
+            StartCrashSequence();
+        }
+        //RespondToDebugKeys();
     }
 
     void RespondToDebugKeys()

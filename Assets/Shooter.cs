@@ -15,10 +15,12 @@ public class Shooter : MonoBehaviour
     [SerializeField] bool Phone;
     public int powerup;
     public bool Nerf;
+    float origBulletSpeed;
     // Start is called before the first frame update
     void Start()
     {
         startTime = Time.time;
+        origBulletSpeed=bulletSpeed;
     }
 
     // Update is called once per frame
@@ -27,7 +29,7 @@ public class Shooter : MonoBehaviour
         if(Nerf)
         {
             Nerf=false;
-            bulletSpeed=700;
+            bulletSpeed=origBulletSpeed;
         }
         if(Com)
         {
@@ -83,6 +85,7 @@ public class Shooter : MonoBehaviour
         }
         else if(powerup==1)
         {
+            GetComponent<Shooter>().startTime=Time.time;
             powerup=0;
             bulletSpeed*=2;
         }

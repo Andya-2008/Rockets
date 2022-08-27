@@ -7,6 +7,7 @@ public class ResetPlayerPrefs : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(GameObject.Find("TitleCanvas"));
         PlayerPrefs.SetInt("Rocket1Score",0);
         PlayerPrefs.SetInt("Rocket2Score",0);
     }

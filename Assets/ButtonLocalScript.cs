@@ -74,7 +74,7 @@ public class ButtonLocalScript : MonoBehaviour
                         Head.GetComponent<RawImage>().color = new Color32(0,255,0,255);
                         break;
                     case 2:
-                        Head.GetComponent<RawImage>().color=new Color32(0,0,255,255);
+                        Head.GetComponent<RawImage>().color=new Color32(0,0,0,255);
                         break;
                     case 3:
                         Head.GetComponent<RawImage>().color = new Color32(251,255,0,255);
@@ -102,7 +102,7 @@ public class ButtonLocalScript : MonoBehaviour
                         Body.GetComponent<RawImage>().color = new Color32(0,255,0,255);
                         break;
                     case 2:
-                        Body.GetComponent<RawImage>().color=new Color32(0,0,255,255);
+                        Body.GetComponent<RawImage>().color=new Color32(0,0,0,255);
                         break;
                     case 3:
                         Body.GetComponent<RawImage>().color = new Color32(251,255,0,255);
@@ -134,7 +134,7 @@ public class ButtonLocalScript : MonoBehaviour
                             break;
                         case 2:
                             RightThruster.GetComponent<RawImage>().color=new Color32(0,0,255,255);
-                            LeftThruster.GetComponent<RawImage>().color=new Color32(0,0,255,255);
+                            LeftThruster.GetComponent<RawImage>().color=new Color32(0,0,0,255);
                             break;
                         case 3:
                             RightThruster.GetComponent<RawImage>().color = new Color32(251,255,0,255);

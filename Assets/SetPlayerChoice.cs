@@ -30,13 +30,13 @@ public class SetPlayerChoice : MonoBehaviour
                 Head1.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
                 break;
             case 2:
-                Head1.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+                Head1.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
                 break;
             case 3:
                 Head1.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
                 break;
         }
-        switch(PlayerPrefs.GetInt("BodyColor2"))
+        switch(PlayerPrefs.GetInt("BodyColor1"))
         {
             case 0:
                 Body1.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
@@ -45,13 +45,13 @@ public class SetPlayerChoice : MonoBehaviour
                 Body1.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
                 break;
             case 2:
-                Body1.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+                Body1.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
                 break;
             case 3:
                 Body1.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
                 break;
         }
-        switch(PlayerPrefs.GetInt("ThrustersColor2"))
+        switch(PlayerPrefs.GetInt("ThrustersColor1"))
         {
             case 0:
                 RightThruster1.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
@@ -62,8 +62,8 @@ public class SetPlayerChoice : MonoBehaviour
                 LeftThruster1.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
                 break;
             case 2:
-                RightThruster1.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
-                LeftThruster1.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+                RightThruster1.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
+                LeftThruster1.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
                 break;
             case 3:
                 RightThruster1.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
@@ -82,7 +82,7 @@ public class SetPlayerChoice : MonoBehaviour
                 Head2.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
                 break;
             case 2:
-                Head2.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+                Head2.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
                 break;
             case 3:
                 Head2.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
@@ -97,7 +97,7 @@ public class SetPlayerChoice : MonoBehaviour
                 Body2.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
                 break;
             case 2:
-                Body2.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+                Body2.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
                 break;
             case 3:
                 Body2.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
@@ -114,8 +114,8 @@ public class SetPlayerChoice : MonoBehaviour
                 LeftThruster2.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
                 break;
             case 2:
-                RightThruster2.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
-                LeftThruster2.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+                RightThruster2.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
+                LeftThruster2.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
                 break;
             case 3:
                 RightThruster2.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);

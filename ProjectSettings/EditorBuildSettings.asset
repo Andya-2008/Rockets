@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: befd6bc0d20417e46b5b39628b3d87f9
   - enabled: 1
+    path: Assets/Scenes/LocalSelection.unity
+    guid: 59d569e60e450c1448bd2048aef73cea
+  - enabled: 1
     path: Assets/Scenes/Sandbox-Phone.unity
     guid: e2e9b19fa86fe664a98e0230cc427ee2
   - enabled: 1

@@ -22,8 +22,6 @@ public class RocketPowerup : MonoBehaviour
     {
         powerupUIBackground1 = GameObject.Find("Fixed JoybuttonBackground1");
         powerupUIBackground2 = GameObject.Find("Fixed JoybuttonBackground2");
-        //Comment this out
-        Powerup = 0;
         if(Rocket1)
         {
             Powerup = PlayerPrefs.GetInt("Player1Powerup");

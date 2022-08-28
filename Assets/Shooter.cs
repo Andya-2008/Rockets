@@ -53,20 +53,42 @@ public class Shooter : MonoBehaviour
         }
         if(Phone)
         {
-            if(Time.time-startTime>1)
+            if (Time.time - startTime > 1)
             {
-                if(rocket1)
+                if (rocket1)
                 {
                     if (GameObject.Find("Fixed Joybutton").GetComponent<MyJoybutton>().Pressed)
                     {
-                        Shoot();
+                        if (this.GetComponent<RocketPowerup>().powerupActive)
+                        {
+                            this.GetComponent<RocketPowerup>().ActivatePowerup();
+                            this.GetComponent<RocketPowerup>().powerupActive = false;
+                            this.GetComponent<RocketPowerup>().startTime = Time.time;
+                            this.GetComponent<RocketPowerup>().powerupUIBackground1.SetActive(false);
+                            startTime = Time.time;
+                        }
+                        else
+                        {
+                            Shoot();
+                        }
                     }
                 }
-                if(rocket2)
+                if (rocket2)
                 {
                     if (GameObject.Find("Fixed Joybutton (1)").GetComponent<MyJoybutton>().Pressed)
                     {
-                        Shoot();
+                        if (this.GetComponent<RocketPowerup>().powerupActive)
+                        {
+                            this.GetComponent<RocketPowerup>().ActivatePowerup();
+                            this.GetComponent<RocketPowerup>().powerupActive = false;
+                            this.GetComponent<RocketPowerup>().startTime = Time.time;
+                            this.GetComponent<RocketPowerup>().powerupUIBackground2.SetActive(false);
+                            startTime = Time.time;
+                        }
+                        else
+                        {
+                            Shoot();
+                        }   
                     }
                 }
             }
@@ -75,19 +97,9 @@ public class Shooter : MonoBehaviour
 
     private void Shoot()
     {
-        if(powerup==0)
-        {
-            startTime=Time.time;
-            GameObject newBullet = Instantiate(Bullet, BulletInstPos);
-            //newBullet.GetComponent<Rigidbody>().AddRelativeForce(transform.forward*bulletSpeed);
-            newBullet.GetComponent<Rigidbody>().AddForce(transform.up*bulletSpeed);
-            newBullet.transform.parent = GameObject.Find("Balls").GetComponent<Transform>();
-        }
-        else if(powerup==1)
-        {
-            GetComponent<Shooter>().startTime=Time.time;
-            powerup=0;
-            bulletSpeed*=2;
-        }
+        startTime = Time.time;
+        GameObject newBullet = Instantiate(Bullet, BulletInstPos);
+        newBullet.GetComponent<Rigidbody>().AddForce(transform.up * bulletSpeed);
+        newBullet.transform.parent = GameObject.Find("Balls").GetComponent<Transform>();
     }
 }

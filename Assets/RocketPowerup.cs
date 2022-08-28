@@ -12,9 +12,18 @@ public class RocketPowerup : MonoBehaviour
     [SerializeField] GameObject bigBullet;
     [SerializeField] float bulletSpeed;
     public Transform BulletInstPos;
+    [SerializeField] float powerupTime;
+    public bool powerupActive=true;
+    public float startTime;
+    public GameObject powerupUIBackground1;
+    public GameObject powerupUIBackground2;
     // Start is called before the first frame update
     void Start()
     {
+        powerupUIBackground1 = GameObject.Find("Fixed JoybuttonBackground1");
+        powerupUIBackground2 = GameObject.Find("Fixed JoybuttonBackground2");
+        //Comment this out
+        Powerup = 0;
         if(Rocket1)
         {
             Powerup = PlayerPrefs.GetInt("Player1Powerup");
@@ -29,14 +38,21 @@ public class RocketPowerup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        if(Time.time-startTime >= powerupTime && !powerupActive)
         {
-            Powerup = 0;
-            ActivatePowerup();
+            powerupActive = true;
+            if(Rocket1)
+            {
+                powerupUIBackground1.SetActive(true);
+            }
+            if (Rocket2)
+            {
+                powerupUIBackground2.SetActive(true);
+            }
         }
     }
 
-    void ActivatePowerup()
+    public void ActivatePowerup()
     {
         if(Powerup==0)
         {

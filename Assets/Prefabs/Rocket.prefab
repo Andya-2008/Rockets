@@ -1527,11 +1527,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d1eff231878fe4e915d36ea08cf319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rocket1: 0
+  Rocket1: 1
   Rocket2: 0
   bigBullet: {fileID: 6778943331636795233, guid: e00e64ca35d84be47a81ce09fde3a4ad, type: 3}
-  bulletSpeed: 10000
+  bulletSpeed: 6000
   BulletInstPos: {fileID: 5379126678241658496}
+  powerupTime: 5
+  powerupActive: 1
+  startTime: 0
+  powerupUIBackground1: {fileID: 0}
+  powerupUIBackground2: {fileID: 0}
 --- !u!1 &7658657385249296928
 GameObject:
   m_ObjectHideFlags: 0

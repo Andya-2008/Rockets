@@ -66,7 +66,7 @@ public class CollisionHandler : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Powerup":
-                switch(other.gameObject.name)
+                switch (other.gameObject.name)
                 {
                     case "P_BulletSpeed(Clone)":
                         Debug.Log("`");
@@ -78,6 +78,12 @@ public class CollisionHandler : MonoBehaviour
                 Destroy(other.gameObject);
                 break;
             case "Friendly":
+                break;
+            case "Bullet":
+                if (bullet)
+                {
+                    StartCrashSequence();
+                }
                 break;
             case "Finish":
                 StartSuccessSequence();
@@ -125,6 +131,7 @@ public class CollisionHandler : MonoBehaviour
         if(bullet)
         {
             bulletBody.SetActive(false);
+            GetComponent<SphereCollider>().enabled = false;
         }
         if(!bullet)
         {

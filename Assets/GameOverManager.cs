@@ -26,7 +26,7 @@ public class GameOverManager : MonoBehaviour
     {
         if(GameOverProcessStarted && Time.time-startTime>2)
         {
-            int RandomMap=Random.Range(2,9);
+            int RandomMap=Random.Range(3,9);
             GetComponent<OnChangeScene>().ChangeScene(RandomMap);
         }
         if(finalGameOver && Time.time-startTime>2)

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7504400336311473616}
   m_Layer: 0
   m_Name: BigBullet
-  m_TagString: Friendly
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

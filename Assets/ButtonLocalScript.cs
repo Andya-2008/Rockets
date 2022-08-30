@@ -133,7 +133,7 @@ public class ButtonLocalScript : MonoBehaviour
                             LeftThruster.GetComponent<RawImage>().color=new Color32(0,255,0,255);
                             break;
                         case 2:
-                            RightThruster.GetComponent<RawImage>().color=new Color32(0,0,255,255);
+                            RightThruster.GetComponent<RawImage>().color=new Color32(0,0,0,255);
                             LeftThruster.GetComponent<RawImage>().color=new Color32(0,0,0,255);
                             break;
                         case 3:

@@ -9,13 +9,14 @@ public class Shooter : MonoBehaviour
     public Transform BulletInstPos;
     [SerializeField] bool rocket1;
     [SerializeField] bool rocket2;
-    [SerializeField] float bulletSpeed;
+    public float bulletSpeed;
     float startTime;
     [SerializeField] bool Com;
     [SerializeField] bool Phone;
     public int powerup;
     public bool Nerf;
     float origBulletSpeed;
+    public float bulletTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +54,7 @@ public class Shooter : MonoBehaviour
         }
         if(Phone)
         {
-            if (Time.time - startTime > 1)
+            if (Time.time - startTime > bulletTime)
             {
                 if (rocket1)
                 {

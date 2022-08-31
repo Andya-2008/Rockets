@@ -12,7 +12,7 @@ public class RocketPowerup : MonoBehaviour
     [SerializeField] GameObject bigBullet;
     [SerializeField] float bulletSpeed;
     public Transform BulletInstPos;
-    [SerializeField] float powerupTime;
+    public float powerupTime;
     public bool powerupActive=true;
     public float startTime;
     public GameObject powerupUIBackground1;

@@ -4,7 +4,47 @@ using UnityEngine;
 
 public class PowerupManager : MonoBehaviour
 {
-    [SerializeField] List<GameObject> powerupList = new List<GameObject>();
+    [SerializeField] List<MovePowerup> powerupList = new List<MovePowerup>();
+    int randomPowerNum;
+    public float startTime;
+    public bool alreadySpawned;
+
+    private void Start()
+    {
+        startTime = Time.time+5;
+    }
+    private void Update()
+    {
+        if (Time.time - startTime >= 10 && !alreadySpawned)
+        {
+            alreadySpawned = true;
+            SpawnPowerup();
+        }
+    }
+    void SpawnPowerup()
+    {
+        randomPowerNum = Random.Range(0, 3);
+        
+        powerupList[randomPowerNum].gameObject.SetActive(true);
+        powerupList[randomPowerNum].GetComponent<MovePowerup>().ChangePos();
+        powerupList[randomPowerNum].GetComponent<MovePowerup>().move = true;
+        powerupList[randomPowerNum].GetComponent<MovePowerup>().alreadyGavePowerup = false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*[SerializeField] List<GameObject> powerupList = new List<GameObject>();
     public float startTime;
     [SerializeField]bool initialTimeCheck;
     [SerializeField] Transform spawnPos;
@@ -62,5 +102,5 @@ public class PowerupManager : MonoBehaviour
             BulletSpeedUnInteract.SetActive(false);
             OrigUnInteract.SetActive(true);
         }
-    }
+    }*/
 }

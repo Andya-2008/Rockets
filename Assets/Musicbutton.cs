@@ -6,6 +6,7 @@ public class Musicbutton : MonoBehaviour
 {
     [SerializeField] GameObject OnText;
     [SerializeField] GameObject OffText;
+    [SerializeField] GameObject VolumeSlider;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +24,14 @@ public class Musicbutton : MonoBehaviour
         if(PlayerPrefs.GetString("Music") == "off")
         {
             PlayerPrefs.SetString("Music", "on");
+            VolumeSlider.SetActive(true);
             OnText.SetActive(true);
             OffText.SetActive(false);
         }
         
         else if(PlayerPrefs.GetString("Music") == "on")
         {
+            VolumeSlider.SetActive(false);
             PlayerPrefs.SetString("Music", "off");
             OnText.SetActive(false);
             OffText.SetActive(true);
@@ -36,6 +39,7 @@ public class Musicbutton : MonoBehaviour
         else
         {
             PlayerPrefs.SetString("Music", "off");
+            VolumeSlider.SetActive(false);
             OnText.SetActive(false);
             OffText.SetActive(true);
         }

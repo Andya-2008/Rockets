@@ -14,6 +14,9 @@ public class ShrinkButton : MonoBehaviour
     float startTime;
     [SerializeField] GameObject BackgroundMusic;
     [SerializeField] GameObject MusicButton;
+    [SerializeField] GameObject MusicFireCover;
+    [SerializeField] Slider VolumeSlider;
+    bool alreadyMusic;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +31,22 @@ public class ShrinkButton : MonoBehaviour
     {
         if(shrink)
         {
-            if (PlayerPrefs.GetString("Music") == "on")
+            if (!alreadyMusic)
             {
-                DontDestroyOnLoad(BackgroundMusic);
-                BackgroundMusic.SetActive(true);
-                BackgroundMusic.GetComponent<AudioSource>().Play();
+                alreadyMusic = true;
+                PlayerPrefs.SetFloat("Volume", VolumeSlider.value);
+                VolumeSlider.interactable = false;
+                if (PlayerPrefs.GetString("Music") == "on")
+                {
+                    DontDestroyOnLoad(BackgroundMusic);
+                    BackgroundMusic.GetComponent<AudioSource>().volume*=PlayerPrefs.GetFloat("Volume");
+                    BackgroundMusic.SetActive(true);
+                    BackgroundMusic.GetComponent<AudioSource>().Play();
+                }
+                else
+                {
+                    PlayerPrefs.SetFloat("Volume", 0);
+                }
             }
             FadeImage.SetActive(true);
             moveRocket = true;
@@ -51,7 +65,9 @@ public class ShrinkButton : MonoBehaviour
             
             Rocket.GetComponent<RectTransform>().position += new Vector3(0,rocketspeed*100*Time.deltaTime,0);
             rocketspeed += .005f;
-            MusicButton.GetComponent<RectTransform>().position += new Vector3(0, 2f, 0);
+            MusicFireCover.SetActive(false);
+            MusicButton.GetComponent<RectTransform>().position += new Vector3(0, 3f, 0);
+            VolumeSlider.GetComponent<RectTransform>().position += new Vector3(0, 3f, 0);
             if (Time.time - startTime >= 5)
             {
                 fadeImagecolor.a += .01f; 

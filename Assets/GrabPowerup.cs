@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GrabPowerup : MonoBehaviour
 {
+    /*
     bool stillActive;
     public float startTime;
     // Start is called before the first frame update
@@ -30,4 +31,5 @@ public class GrabPowerup : MonoBehaviour
         //Bulletspeed=1
         this.GetComponent<Shooter>().powerup = powerUpType;
     }
+    */
 }

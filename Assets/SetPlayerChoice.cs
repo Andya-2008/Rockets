@@ -15,13 +15,10 @@ public class SetPlayerChoice : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        switch(PlayerPrefs.GetInt("HeadColor1"))
+        
+        GameObject.Find("Rocket1").GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Volume");
+        GameObject.Find("Rocket2").GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Volume");
+        switch (PlayerPrefs.GetInt("HeadColor1"))
         {
             case 0:
                 Head1.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
@@ -36,7 +33,7 @@ public class SetPlayerChoice : MonoBehaviour
                 Head1.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
                 break;
         }
-        switch(PlayerPrefs.GetInt("BodyColor1"))
+        switch (PlayerPrefs.GetInt("BodyColor1"))
         {
             case 0:
                 Body1.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
@@ -51,7 +48,7 @@ public class SetPlayerChoice : MonoBehaviour
                 Body1.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
                 break;
         }
-        switch(PlayerPrefs.GetInt("ThrustersColor1"))
+        switch (PlayerPrefs.GetInt("ThrustersColor1"))
         {
             case 0:
                 RightThruster1.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
@@ -73,7 +70,7 @@ public class SetPlayerChoice : MonoBehaviour
                 Debug.LogError("DisplayColor is not recieving a \"colorNum.\"");
                 break;
         }
-        switch(PlayerPrefs.GetInt("HeadColor2"))
+        switch (PlayerPrefs.GetInt("HeadColor2"))
         {
             case 0:
                 Head2.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
@@ -88,7 +85,7 @@ public class SetPlayerChoice : MonoBehaviour
                 Head2.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
                 break;
         }
-        switch(PlayerPrefs.GetInt("BodyColor2"))
+        switch (PlayerPrefs.GetInt("BodyColor2"))
         {
             case 0:
                 Body2.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
@@ -103,7 +100,7 @@ public class SetPlayerChoice : MonoBehaviour
                 Body2.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
                 break;
         }
-        switch(PlayerPrefs.GetInt("ThrustersColor2"))
+        switch (PlayerPrefs.GetInt("ThrustersColor2"))
         {
             case 0:
                 RightThruster2.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
@@ -125,5 +122,11 @@ public class SetPlayerChoice : MonoBehaviour
                 Debug.LogError("DisplayColor is not recieving a \"colorNum.\"");
                 break;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

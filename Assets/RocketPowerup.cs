@@ -8,7 +8,7 @@ public class RocketPowerup : MonoBehaviour
     [SerializeField]bool Rocket1;
     [SerializeField]bool Rocket2;
 
-    int Powerup;
+    public int Powerup;
     [SerializeField] GameObject bigBullet;
     [SerializeField] float bulletSpeed;
     public Transform BulletInstPos;
@@ -17,19 +17,12 @@ public class RocketPowerup : MonoBehaviour
     public float startTime;
     public GameObject powerupUIBackground1;
     public GameObject powerupUIBackground2;
+    [SerializeField] GameObject HomingMissilePrefab;
     // Start is called before the first frame update
     void Start()
     {
         powerupUIBackground1 = GameObject.Find("Fixed JoybuttonBackground1");
         powerupUIBackground2 = GameObject.Find("Fixed JoybuttonBackground2");
-        if(Rocket1)
-        {
-            Powerup = PlayerPrefs.GetInt("Player1Powerup");
-        }
-        else if(Rocket2)
-        {
-            Powerup = PlayerPrefs.GetInt("Player2Powerup");
-        }
         
     }
 
@@ -56,6 +49,14 @@ public class RocketPowerup : MonoBehaviour
         {
             BigBullet();
         }
+        if(Powerup==1)
+        {
+            Boost();
+        }
+        /*if(Powerup==2)
+        {
+            HomingMissile();
+        }*/
     }
     void BigBullet()
     {
@@ -64,4 +65,13 @@ public class RocketPowerup : MonoBehaviour
         newBullet.GetComponent<Rigidbody>().AddForce(transform.up * bulletSpeed);
         newBullet.transform.parent = GameObject.Find("Balls").GetComponent<Transform>();
     }
+    void Boost()
+    {
+        GetComponent<Rigidbody>().AddRelativeForce(2500*Vector3.up);
+    }
+    /*void HomingMissile()
+    {
+        GameObject newBullet = Instantiate(HomingMissilePrefab, BulletInstPos);
+        newBullet.transform.parent = GameObject.Find("Balls").GetComponent<Transform>();
+    }*/
 }

@@ -58,38 +58,79 @@ public class Shooter : MonoBehaviour
             {
                 if (rocket1)
                 {
-                    if (GameObject.Find("Fixed Joybutton").GetComponent<MyJoybutton>().Pressed)
+                    if (GameObject.Find("Fixed Joystick (2)").GetComponent<FixedJoystick>().Pressed)
                     {
                         if (this.GetComponent<RocketPowerup>().powerupActive)
                         {
-                            this.GetComponent<RocketPowerup>().ActivatePowerup();
-                            this.GetComponent<RocketPowerup>().powerupActive = false;
-                            this.GetComponent<RocketPowerup>().startTime = Time.time;
-                            this.GetComponent<RocketPowerup>().powerupUIBackground1.SetActive(false);
-                            startTime = Time.time;
+                            if (GameObject.Find("Fixed Joystick (2)").GetComponent<FixedJoystick>().Horizontal < -.6)
+                            {
+                                this.GetComponent<RocketPowerup>().Powerup = 0;
+                            
+                                this.GetComponent<RocketPowerup>().ActivatePowerup();
+                                this.GetComponent<RocketPowerup>().powerupActive = false;
+                                this.GetComponent<RocketPowerup>().startTime = Time.time;
+                                this.GetComponent<RocketPowerup>().powerupUIBackground1.SetActive(false);
+                                startTime = Time.time;
+                            }
+                            else if (GameObject.Find("Fixed Joystick (2)").GetComponent<FixedJoystick>().Horizontal > .6)
+                            {
+                                this.GetComponent<RocketPowerup>().Powerup = 1;
+
+                                this.GetComponent<RocketPowerup>().ActivatePowerup();
+                                this.GetComponent<RocketPowerup>().powerupActive = false;
+                                this.GetComponent<RocketPowerup>().startTime = Time.time;
+                                this.GetComponent<RocketPowerup>().powerupUIBackground1.SetActive(false);
+                                startTime = Time.time;
+                            }
+                            else
+                            {
+                                Shoot();
+                            }
                         }
                         else
                         {
                             Shoot();
                         }
+
                     }
                 }
                 if (rocket2)
                 {
-                    if (GameObject.Find("Fixed Joybutton (1)").GetComponent<MyJoybutton>().Pressed)
+                    if (GameObject.Find("Fixed Joystick (3)").GetComponent<FixedJoystick>().Pressed)
                     {
                         if (this.GetComponent<RocketPowerup>().powerupActive)
                         {
-                            this.GetComponent<RocketPowerup>().ActivatePowerup();
-                            this.GetComponent<RocketPowerup>().powerupActive = false;
-                            this.GetComponent<RocketPowerup>().startTime = Time.time;
-                            this.GetComponent<RocketPowerup>().powerupUIBackground2.SetActive(false);
-                            startTime = Time.time;
+                            if (GameObject.Find("Fixed Joystick (3)").GetComponent<FixedJoystick>().Horizontal < -.6)
+                            {
+                                this.GetComponent<RocketPowerup>().Powerup = 1;
+
+                                this.GetComponent<RocketPowerup>().ActivatePowerup();
+                                this.GetComponent<RocketPowerup>().powerupActive = false;
+                                this.GetComponent<RocketPowerup>().startTime = Time.time;
+                                this.GetComponent<RocketPowerup>().powerupUIBackground2.SetActive(false);
+                                startTime = Time.time;
+                            }
+                            else if (GameObject.Find("Fixed Joystick (3)").GetComponent<FixedJoystick>().Horizontal > .6)
+                            {
+                                this.GetComponent<RocketPowerup>().Powerup = 0;
+
+                                this.GetComponent<RocketPowerup>().ActivatePowerup();
+                                this.GetComponent<RocketPowerup>().powerupActive = false;
+                                this.GetComponent<RocketPowerup>().startTime = Time.time;
+                                this.GetComponent<RocketPowerup>().powerupUIBackground2.SetActive(false);
+                                startTime = Time.time;
+                            }
+                            else
+                            {
+                                Shoot();
+                            }
                         }
                         else
                         {
                             Shoot();
-                        }   
+                        }
+
+
                     }
                 }
             }

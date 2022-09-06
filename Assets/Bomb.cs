@@ -20,7 +20,7 @@ public class Bomb : MonoBehaviour
     void Update()
     {
         BombText.text = (BombTime-Mathf.Round(Time.time-startTime)).ToString();
-        if((Time.time-startTime)>=BombTime && !hit)
+        if((Time.time-startTime)>=BombTime)
         {
             Explode();
         }
@@ -33,12 +33,5 @@ public class Bomb : MonoBehaviour
         BombBlowUpRadius.SetActive(true);
         this.gameObject.tag="Untagged";
         BombBlowUpRadius.transform.localScale+= new Vector3(.05f, 0,.05f);
-    }
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.name.Contains("Rocket"))
-        {
-            hit=true;
-        }
     }
 }

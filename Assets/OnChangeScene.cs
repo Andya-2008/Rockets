@@ -9,9 +9,10 @@ public class OnChangeScene : MonoBehaviour
     {
         if(sceneNum==1)
         {
-            SceneManager.LoadScene(sceneNum);
+            Debug.Log(3);
+            GameObject.Find("FadeCanvas").GetComponent<FadeImageScript>().home = true;
         }
-        if (sceneNum == 2)
+        else if (sceneNum == 2)
         {
             GetComponent<ShrinkButton>().shrink = true;
             PlayerPrefs.SetInt("HeadColor1", GameObject.Find("Buttons1").GetComponent<ButtonLocalScript>().headColorNum);
@@ -21,6 +22,13 @@ public class OnChangeScene : MonoBehaviour
             PlayerPrefs.SetInt("BodyColor2", GameObject.Find("Buttons2").GetComponent<ButtonLocalScript>().bodyColorNum);
             PlayerPrefs.SetInt("ThrustersColor2", GameObject.Find("Buttons2").GetComponent<ButtonLocalScript>().thrustersColorNum);
             
+        }
+        else if(sceneNum==857)
+        {
+            this.GetComponent<AudioSource>().Play();
+            Debug.Log("1");
+            GameObject.Find("FadeCanvas").GetComponent<FadeImageScript>().home = true;
+            Destroy(GameObject.Find("BackGroundMusic"));
         }
         else
         {

@@ -57,7 +57,6 @@ public class ButtonLocalScript : MonoBehaviour
     }
     public void DisplayColor(string part, int colorNum)
     {
-        Debug.Log(colorNum);
         switch(part)
         {
             case "Head":

@@ -9,6 +9,8 @@ public class FadeImageScript : MonoBehaviour
     Color fadeImagecolor;
     bool start=true;
     public bool end;
+    public bool home;
+    public bool Sandbox;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,7 @@ public class FadeImageScript : MonoBehaviour
     {
         if (start)
         {
-            fadeImagecolor.a -= .01f;
+            fadeImagecolor.a -= .03f;
             FadeImage.GetComponent<Image>().color = fadeImagecolor;
             if (fadeImagecolor.a <= 0)
             {
@@ -33,13 +35,35 @@ public class FadeImageScript : MonoBehaviour
         if (end)
         {
             FadeImage.SetActive(true);
-            fadeImagecolor.a += .01f;
+            fadeImagecolor.a += .03f;
             FadeImage.GetComponent<Image>().color = fadeImagecolor;
-            if (fadeImagecolor.a >= 1.1f)
+            if (fadeImagecolor.a >= 1f)
             {
                 end = false;
                 int sceneNum = Random.Range(2, 10);
                 SceneManager.LoadScene(sceneNum);
+            }
+        }
+        if (home)
+        {
+            FadeImage.SetActive(true);
+            fadeImagecolor.a += .03f;
+            FadeImage.GetComponent<Image>().color = fadeImagecolor;
+            if (fadeImagecolor.a >= 1f)
+            {
+                end = false;
+                SceneManager.LoadScene(1);
+            }
+        }
+        if (Sandbox)
+        {
+            FadeImage.SetActive(true);
+            fadeImagecolor.a += .03f;
+            FadeImage.GetComponent<Image>().color = fadeImagecolor;
+            if (fadeImagecolor.a >= 1f)
+            {
+                end = false;
+                SceneManager.LoadScene(2);
             }
         }
     }

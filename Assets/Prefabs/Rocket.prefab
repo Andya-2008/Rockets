@@ -1507,6 +1507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rocket1: 1
   Rocket2: 0
+  Powerup: 1
   bigBullet: {fileID: 6778943331636795233, guid: e00e64ca35d84be47a81ce09fde3a4ad, type: 3}
   bulletSpeed: 6000
   BulletInstPos: {fileID: 5379126678241658496}
@@ -1515,6 +1516,7 @@ MonoBehaviour:
   startTime: 0
   powerupUIBackground1: {fileID: 0}
   powerupUIBackground2: {fileID: 0}
+  HomingMissilePrefab: {fileID: 6778943331636795233, guid: 03a3f80b9565670479f1d845c6bdfc46, type: 3}
 --- !u!1 &7658657385249296928
 GameObject:
   m_ObjectHideFlags: 0

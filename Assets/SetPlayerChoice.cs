@@ -16,8 +16,9 @@ public class SetPlayerChoice : MonoBehaviour
     void Start()
     {
         
-        GameObject.Find("Rocket1").GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Volume");
-        GameObject.Find("Rocket2").GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Volume");
+        GameObject.Find("Rocket1").GetComponent<AudioSource>().volume *= PlayerPrefs.GetFloat("Volume");
+        GameObject.Find("Rocket2").GetComponent<AudioSource>().volume *= PlayerPrefs.GetFloat("Volume");
+        GameObject.Find("Homebutton").GetComponent<AudioSource>().volume *= PlayerPrefs.GetFloat("Volume");
         switch (PlayerPrefs.GetInt("HeadColor1"))
         {
             case 0:

@@ -17,6 +17,7 @@ public class Shooter : MonoBehaviour
     public bool Nerf;
     float origBulletSpeed;
     public float bulletTime;
+    GameObject newBullet;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,55 +53,61 @@ public class Shooter : MonoBehaviour
                 }
             }
         }
-        if(Phone)
+        if (Phone)
         {
-            if (Time.time - startTime > bulletTime)
-            {
-                if (rocket1)
-                {
-                    if (GameObject.Find("Fixed Joystick (2)").GetComponent<FixedJoystick>().Pressed)
-                    {
-                        if (this.GetComponent<RocketPowerup>().powerupActive)
-                        {
-                            if (GameObject.Find("Fixed Joystick (2)").GetComponent<FixedJoystick>().Horizontal < -.6)
-                            {
-                                this.GetComponent<RocketPowerup>().Powerup = 0;
-                            
-                                this.GetComponent<RocketPowerup>().ActivatePowerup();
-                                this.GetComponent<RocketPowerup>().powerupActive = false;
-                                this.GetComponent<RocketPowerup>().startTime = Time.time;
-                                this.GetComponent<RocketPowerup>().powerupUIBackground1.SetActive(false);
-                                startTime = Time.time;
-                            }
-                            else if (GameObject.Find("Fixed Joystick (2)").GetComponent<FixedJoystick>().Horizontal > .6)
-                            {
-                                this.GetComponent<RocketPowerup>().Powerup = 1;
 
-                                this.GetComponent<RocketPowerup>().ActivatePowerup();
-                                this.GetComponent<RocketPowerup>().powerupActive = false;
-                                this.GetComponent<RocketPowerup>().startTime = Time.time;
-                                this.GetComponent<RocketPowerup>().powerupUIBackground1.SetActive(false);
-                                startTime = Time.time;
-                            }
-                            else
+            if (rocket1)
+            {
+                if (GameObject.Find("Fixed Joystick (2)").GetComponent<FixedJoystick>().Pressed)
+                {
+                    if (this.GetComponent<RocketPowerup>().powerupActive)
+                    {
+                        if (GameObject.Find("Fixed Joystick (2)").GetComponent<FixedJoystick>().Horizontal < -.7)
+                        {
+                            this.GetComponent<RocketPowerup>().Powerup = 0;
+                            Destroy(newBullet);
+                            this.GetComponent<RocketPowerup>().ActivatePowerup();
+                            this.GetComponent<RocketPowerup>().powerupActive = false;
+                            this.GetComponent<RocketPowerup>().startTime = Time.time;
+                            this.GetComponent<RocketPowerup>().powerupUIBackground1.SetActive(false);
+                            startTime = Time.time;
+                        }
+                        else if (GameObject.Find("Fixed Joystick (2)").GetComponent<FixedJoystick>().Horizontal > .7)
+                        {
+                            this.GetComponent<RocketPowerup>().Powerup = 1;
+
+                            this.GetComponent<RocketPowerup>().ActivatePowerup();
+                            this.GetComponent<RocketPowerup>().powerupActive = false;
+                            this.GetComponent<RocketPowerup>().startTime = Time.time;
+                            this.GetComponent<RocketPowerup>().powerupUIBackground1.SetActive(false);
+                            startTime = Time.time;
+                        }
+                        else
+                        {
+                            if (Time.time - startTime > bulletTime)
                             {
                                 Shoot();
                             }
                         }
-                        else
+                    }
+                    else
+                    {
+                        if (Time.time - startTime > bulletTime)
                         {
                             Shoot();
                         }
-
                     }
+
                 }
+            }
+        }
                 if (rocket2)
                 {
                     if (GameObject.Find("Fixed Joystick (3)").GetComponent<FixedJoystick>().Pressed)
                     {
                         if (this.GetComponent<RocketPowerup>().powerupActive)
                         {
-                            if (GameObject.Find("Fixed Joystick (3)").GetComponent<FixedJoystick>().Horizontal < -.6)
+                            if (GameObject.Find("Fixed Joystick (3)").GetComponent<FixedJoystick>().Horizontal < -.7)
                             {
                                 this.GetComponent<RocketPowerup>().Powerup = 1;
 
@@ -110,7 +117,7 @@ public class Shooter : MonoBehaviour
                                 this.GetComponent<RocketPowerup>().powerupUIBackground2.SetActive(false);
                                 startTime = Time.time;
                             }
-                            else if (GameObject.Find("Fixed Joystick (3)").GetComponent<FixedJoystick>().Horizontal > .6)
+                            else if (GameObject.Find("Fixed Joystick (3)").GetComponent<FixedJoystick>().Horizontal > .7)
                             {
                                 this.GetComponent<RocketPowerup>().Powerup = 0;
 
@@ -119,28 +126,33 @@ public class Shooter : MonoBehaviour
                                 this.GetComponent<RocketPowerup>().startTime = Time.time;
                                 this.GetComponent<RocketPowerup>().powerupUIBackground2.SetActive(false);
                                 startTime = Time.time;
+                                Destroy(newBullet);
                             }
                             else
                             {
-                                Shoot();
+                                if (Time.time - startTime > bulletTime)
+                                {
+                                    Shoot();
+                                }
                             }
                         }
                         else
                         {
-                            Shoot();
+                            if (Time.time - startTime > bulletTime)
+                            {
+                                Shoot();
+                            }
                         }
 
 
                     }
                 }
-            }
-        }
     }
 
     private void Shoot()
     {
         startTime = Time.time;
-        GameObject newBullet = Instantiate(Bullet, BulletInstPos);
+        newBullet = Instantiate(Bullet, BulletInstPos);
         newBullet.GetComponent<Rigidbody>().AddForce(transform.up * bulletSpeed);
         newBullet.transform.parent = GameObject.Find("Balls").GetComponent<Transform>();
     }

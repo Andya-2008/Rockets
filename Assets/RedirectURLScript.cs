@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RedirectURLScript : MonoBehaviour
 {
+    [SerializeField] GameObject linkText;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,9 @@ public class RedirectURLScript : MonoBehaviour
     }
     public void Redirect(string url)
     {
+        linkText.SetActive(true);
+        this.gameObject.SetActive(false);
         Application.OpenURL(url);
+        
     }
 }

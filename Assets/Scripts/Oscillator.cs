@@ -33,6 +33,7 @@ public class Oscillator : MonoBehaviour
         }
         else
         {
+            this.GetComponent<AnchorGameObject>().enabled = false;
             if(movementVector.x>0)
             {
                 this.transform.position = new Vector3(this.transform.position.x+period, this.transform.position.y, this.transform.position.z);

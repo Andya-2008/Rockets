@@ -10,7 +10,7 @@ public class DestroyTitle : MonoBehaviour
         if (PlayerPrefs.GetInt("TitleCanvasDestroyed") == 0)
         {
             PlayerPrefs.SetInt("TitleCanvasDestroyed",1);
-            Destroy(GameObject.Find("TitleCanvas").gameObject);
+            GameObject.Find("TitleCanvas").gameObject.SetActive(false);
         }
     }
 

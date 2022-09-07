@@ -4809,7 +4809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementVector: {x: -10, y: 0, z: 0}
-  period: 0.0025
+  period: 0.004
   level4: 1
 --- !u!114 &1510010922
 MonoBehaviour:
@@ -6116,7 +6116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementVector: {x: 10, y: 0, z: 0}
-  period: 0.002
+  period: 0.004
   level4: 1
 --- !u!114 &1955020362
 MonoBehaviour:

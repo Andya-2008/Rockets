@@ -29,7 +29,7 @@ public class OnChangeScene : MonoBehaviour
             Debug.Log("1");
             GameObject.Find("FadeCanvas").GetComponent<FadeImageScript>().home = true;
             Destroy(GameObject.Find("BackGroundMusic"));
-            GameObject.Find("TitleCanvas").gameObject.SetActive(true);
+            GameObject.Find("TitleCanvas").GetComponent<Canvas>().enabled = (true);
         }
         else
         {

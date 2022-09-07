@@ -7,11 +7,7 @@ public class DestroyTitle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetInt("TitleCanvasDestroyed") == 0)
-        {
-            PlayerPrefs.SetInt("TitleCanvasDestroyed",1);
-            GameObject.Find("TitleCanvas").gameObject.SetActive(false);
-        }
+            GameObject.Find("TitleCanvas").GetComponent<Canvas>().enabled=(false);
     }
 
     // Update is called once per frame
